@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CiberChat</string>
+    <string name="SOCKET">http://198.199.93.112:1103</string>
+    <color name="ownUserMessageBackgroundColor">#1373ac</color>
+    <color name="thirdUserMessageBackgroundColor">#ffffff</color>
+    <color name="ownUserMessageLetterColor">#ffffff</color>
+    <color name="thirdUserMessageLetterColor">#000000</color>
+    <color name="firstThirdUsernameColor">#ae0000</color>
+    <color name="secondThirdUsernameColor">#aebc00</color>
+    <color name="thirdThirdUsernameColor">#aebcf6</color>
+</resources>
