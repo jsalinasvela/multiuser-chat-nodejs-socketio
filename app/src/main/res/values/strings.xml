@@ -19,4 +19,5 @@
     <color name="secondThirdUsernameColor">#aebc00</color>
     <color name="thirdThirdUsernameColor">#aebcf6</color>
     <color name="chatListDividerColor">#ffffff</color>
+    <color name="messageHolderBackgroundColor">#fafafaff</color>
 </resources>
