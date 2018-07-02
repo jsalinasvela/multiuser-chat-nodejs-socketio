@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,9 @@ public class MessageAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent){
         MessageViewHolder holder;
         String phone_cibertecid;
+
+
+
         if (convertView == null){
             LayoutInflater messageInflater = (LayoutInflater) messageContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = messageInflater.inflate(R.layout.message, null);
@@ -78,7 +82,7 @@ public class MessageAdapter extends BaseAdapter{
 
             holder = new MessageViewHolder();
             holder.messageBackground = (LinearLayout) convertView.findViewById(R.id.message_background);
-            holder.thumbnailImageView = (ImageView) convertView.findViewById(R.id.img_thumbnail);
+            //holder.thumbnailImageView = (ImageView) convertView.findViewById(R.id.img_thumbnail);
             holder.senderView = (TextView) convertView.findViewById(R.id.message_sender);
             holder.bodyView = (TextView) convertView.findViewById(R.id.message_body);
             holder.idView = (TextView) convertView.findViewById(R.id.message_id);
@@ -96,6 +100,21 @@ public class MessageAdapter extends BaseAdapter{
             Log.v("TRYING:", "ESTOY AQUI");
             phone_cibertecid = table.getJSONObject(0).getString("cibertecid");
             Log.v("PHONE CIBERTECID:", phone_cibertecid);
+
+
+            //Following code is to add a TEXT VIEW that shows the TIME remaining for the message to be deleted
+            /*
+            TextView timer_tv = new TextView(messageContext);
+            timer_tv.setTag("timer_"+String.valueOf(message.getId()));
+            timer_tv.setGravity(Gravity.LEFT);
+            timer_tv.setLayoutParams(new LinearLayout.LayoutParams(15, 15));
+            RelativeLayout.LayoutParams myparams = (RelativeLayout.LayoutParams)timer_tv.getLayoutParams();
+            myparams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+            myparams.addRule(RelativeLayout.CENTER_VERTICAL);
+            timer_tv.setLayoutParams(myparams);
+
+            holder.messageBackground.addView(timer_tv);
+            */
 
             if (message.getFrom_userciber().equals(phone_cibertecid)){
 
@@ -134,6 +153,8 @@ public class MessageAdapter extends BaseAdapter{
                 }else{
                     holder.bodyView.setTextAppearance(messageContext, R.style.ownUserText);
                 }
+                //set message to show up to the right of bubble
+                holder.bodyView.setGravity(Gravity.RIGHT);
 
 
             }else{
@@ -176,6 +197,8 @@ public class MessageAdapter extends BaseAdapter{
                 }else{
                     holder.bodyView.setTextAppearance(messageContext, R.style.thirdUserText);
                 }
+                //set message to show up to the LEFT of bubble
+                holder.bodyView.setGravity(Gravity.LEFT);
 
 
             }
@@ -196,6 +219,12 @@ public class MessageAdapter extends BaseAdapter{
     public void add(Message message){
         messageList.add(message);
         Log.v("INCOMING MESSAGE:", message.getFrom_userciber());
+        notifyDataSetChanged();
+    }
+
+    public void remove(Message message){
+        messageList.remove(message);
+        Log.v("DELETING MESSAGE", message.getContent());
         notifyDataSetChanged();
     }
 

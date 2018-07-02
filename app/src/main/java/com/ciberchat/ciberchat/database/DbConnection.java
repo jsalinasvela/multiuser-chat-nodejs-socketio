@@ -18,8 +18,9 @@ public class DbConnection extends SQLiteOpenHelper{
     //common column names
     public static final String COLUMN_ID= "id";
     //USER Table column names
-    public static final String COLUMN_USERNAME= "username";
-    public static final String COLUMN_CIBERTECID= "cibertec_id";
+    public static final String COLUMN_CIBERTECID= "cibertecid";
+    public static final String COLUMN_FIRSTNAME= "first_name";
+    public static final String COLUMN_LASTNAME="last_name";
     //MESSAGE Table column names
     public static final String COLUMN_FROMUSER= "from_username";
     public static final String COLUMN_FROMCIBER="from_userciber";
@@ -27,8 +28,8 @@ public class DbConnection extends SQLiteOpenHelper{
     public static final String COLUMN_RECEIVED_AT="received_at";
 
     public static final String CREATE_TABLE_USER = "CREATE TABLE "
-            + TABLE_USER + "(" + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_USERNAME
-            + " TEXT," + COLUMN_CIBERTECID + " TEXT" + ")";
+            + TABLE_USER + "(" + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_CIBERTECID
+            + " TEXT," + COLUMN_FIRSTNAME + " TEXT," + COLUMN_LASTNAME + " TEXT" + ")";
 
     private static final String CREATE_TABLE_MESSAGE = "CREATE TABLE " + TABLE_MESSAGE
             + "(" + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_FROMUSER+ " TEXT,"

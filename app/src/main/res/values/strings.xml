@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">CiberChat</string>
-    <string name="SOCKET">http://198.199.93.112:1103</string>
+    <!--<string name="SOCKET">http://198.199.93.112:1103</string>-->
+    <string name="SOCKET">http://192.168.1.70:1103</string>
+    <string name="input_hint">Search</string>
+    <string name="search_btn_text">Search</string>
+    <string name="search_exit">Exit</string>
+    <string name="cibertec_id_hint">Ingresa tu ID de Cibertec</string>
+    <string name="ingresa_ciberchat">Ingresa a CiberChat</string>
+    <string name="login_cibertec">Entrar</string>
+    <string name="title_activity_login">Login</string>
+    <string name="Your_Name_Goes_Here">Jose Jesus Salinas Vela</string>
+    <string name="your_username_label">Tu nombre:</string>
     <color name="ownUserMessageBackgroundColor">#1373ac</color>
     <color name="thirdUserMessageBackgroundColor">#ffffff</color>
     <color name="ownUserMessageLetterColor">#ffffff</color>
@@ -8,4 +18,5 @@
     <color name="firstThirdUsernameColor">#ae0000</color>
     <color name="secondThirdUsernameColor">#aebc00</color>
     <color name="thirdThirdUsernameColor">#aebcf6</color>
+    <color name="chatListDividerColor">#ffffff</color>
 </resources>

@@ -49,8 +49,9 @@ public class MyDbHelper {
 
     public JSONArray createUser(User user){
         ContentValues values = new ContentValues();
-        values.put(dbc.COLUMN_USERNAME, user.getUsername());
         values.put(dbc.COLUMN_CIBERTECID, user.getCibertecid());
+        values.put(dbc.COLUMN_FIRSTNAME, user.getFirstname());
+        values.put(dbc.COLUMN_LASTNAME, user.getLastname());
         db_write.insert(dbc.TABLE_USER, null, values);
         return readUsers();
     }
@@ -66,12 +67,15 @@ public class MyDbHelper {
                 User user = new User();
                 JSONObject userJSON = new JSONObject();
                 user.setId(c.getInt((c.getColumnIndex(dbc.COLUMN_ID))));
-                user.setUsername((c.getString(c.getColumnIndex(dbc.COLUMN_USERNAME))));
                 user.setCibertecid(c.getString(c.getColumnIndex(dbc.COLUMN_CIBERTECID)));
+                user.setFirstname((c.getString(c.getColumnIndex(dbc.COLUMN_FIRSTNAME))));
+                user.setLastname((c.getString(c.getColumnIndex(dbc.COLUMN_LASTNAME))));
+
                 try {
                     userJSON.put("id", user.getId());
-                    userJSON.put("username", user.getUsername());
                     userJSON.put("cibertecid", user.getCibertecid());
+                    userJSON.put("first_name", user.getFirstname());
+                    userJSON.put("last_name", user.getLastname());
                     users.put(userJSON);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -84,7 +88,8 @@ public class MyDbHelper {
 
     public JSONArray updateUser(User user){
         ContentValues values = new ContentValues();
-        values.put(dbc.COLUMN_USERNAME, user.getUsername());
+        values.put(dbc.COLUMN_FIRSTNAME, user.getFirstname());
+        values.put(dbc.COLUMN_LASTNAME, user.getLastname());
 
         db_write.update(dbc.TABLE_USER, values, dbc.COLUMN_ID+"= ?", new String[] {String.valueOf(user.getId())});
         //return updated table records
@@ -132,6 +137,41 @@ public class MyDbHelper {
             }while(c.moveToNext());
         }
         return message;
+    }
+
+    public ArrayList<Message> readMessageByText(String search_word){
+
+        ArrayList<Message> messageArray = new ArrayList<Message>();
+
+        String selectQuery = "SELECT * FROM " + dbc.TABLE_MESSAGE + " WHERE " + dbc.COLUMN_TEXT + " LIKE ?";
+        String modif_search_word = "%"+search_word+"%";
+        String[] selectionArgs = {modif_search_word};
+
+        Log.v("SELECT QUERY:", selectQuery);
+
+        Cursor c = db_read.rawQuery(selectQuery, selectionArgs);
+
+        if (c != null){
+            c.moveToFirst();
+            Log.v("C:", String.valueOf(c.getCount()));
+            Log.v("c.getColumnIndex:", String.valueOf(c.getColumnIndex(dbc.COLUMN_ID)));
+            Log.v("c.getInt:", String.valueOf(c.getColumnIndex(dbc.COLUMN_ID)));
+
+            if (c.moveToFirst()){
+                do {
+                    Message message = new Message();
+                    //JSONObject messageJSON = new JSONObject();
+                    message.setId(c.getInt((c.getColumnIndex(dbc.COLUMN_ID))));
+                    message.setFrom_username((c.getString(c.getColumnIndex(dbc.COLUMN_FROMUSER))));
+                    message.setFrom_userciber(c.getString(c.getColumnIndex(dbc.COLUMN_FROMCIBER)));
+                    message.setContent(c.getString(c.getColumnIndex(dbc.COLUMN_TEXT)));
+                    message.setReceived_at(c.getString(c.getColumnIndex(dbc.COLUMN_RECEIVED_AT)));
+
+                    messageArray.add(message);
+                }while(c.moveToNext());
+            }
+        }
+        return messageArray;
     }
 
     public ArrayList<Message> readMessages(){

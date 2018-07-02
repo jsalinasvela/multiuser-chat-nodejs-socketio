@@ -6,17 +6,18 @@ package com.ciberchat.ciberchat.database.model;
 
 public class User {
     int id;
-    String username;
+    String firstname, lastname;
     String cibertecid;
 
     //Constructors
     public User(){
     }
 
-    public User(int id, String username, String cibertecid){
+    public User(int id, String cibertecid, String firstname, String lastname){
         this.id = id;
-        this.username=username;
         this.cibertecid = cibertecid;
+        this.firstname=firstname;
+        this.lastname=lastname;
     }
 
     public int getId() {
@@ -27,14 +28,6 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getCibertecid(){
         return cibertecid;
     }
@@ -42,4 +35,12 @@ public class User {
     public void setCibertecid(String cibertecid) {
         this.cibertecid = cibertecid;
     }
+
+    public String getFirstname(){ return firstname;}
+
+    public void setFirstname(String firstname){ this.firstname= firstname; }
+
+    public String getLastname() {return lastname;}
+
+    public void setLastname(String lastname) {this.lastname = lastname;}
 }
