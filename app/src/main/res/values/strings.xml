@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CiberChat</string>
-    <!--<string name="SOCKET">http://198.199.93.112:1103</string>-->
-    <string name="SOCKET">http://192.168.1.70:1103</string>
+    <string name="SOCKET">http://198.199.93.112:1103</string>
+    <!--<string name="SOCKET">http://192.168.1.70:1103</string>-->
     <string name="input_hint">Search</string>
     <string name="search_btn_text">Search</string>
     <string name="search_exit">Exit</string>
